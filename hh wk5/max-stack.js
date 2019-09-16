@@ -7,29 +7,35 @@
  */
 
 function Stack() {
-  // body...
+  this.storage = {};
+  this.length = 0;
+  this.maximums = [];
 }
 
+Stack.prototype.push = function(value) {
+  this.storage[this.length] = value;
+  if (this.length === 0 || value >= this.maximums[this.maximums.length - 1]) {
+    this.maximums.push(value);
+  }
+  this.length++;
+  return this.length;
+};
+
+Stack.prototype.pop = function() {
+  const popped = this.storage[this.length - 1];
+  if (popped === this.maximums[this.maximums.length - 1]) {
+    this.maximums.pop();
+  }
+  delete this.storage[this.length - 1];
+  this.length--;
+  return popped;
+};
+
+Stack.prototype.getMax = function() {
+  return this.maximums[this.maximums.length - 1];
+};
+
 module.exports = Stack;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
