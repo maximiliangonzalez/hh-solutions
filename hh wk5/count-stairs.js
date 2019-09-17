@@ -24,4 +24,34 @@ function countStairs(n) {
   return countStairs(n - 1) + countStairs(n - 2);
 }
 
+// console.log(countStairs(40));
+
+const countStairsMemo = n => {
+  const cache = {};
+  const countStairs = n => {
+    if (n === 0) {
+      return 1;
+    }
+
+    if (n < 0) {
+      return 0;
+    }
+
+    if (!cache.hasOwnProperty(n - 1)) {
+      cache[n - 1] = countStairs(n - 1);
+    }
+
+    if (!cache.hasOwnProperty(n - 2)) {
+      cache[n - 2] = countStairs(n - 2);
+    }
+
+    return cache[n - 1] + cache[n - 2];
+  }
+  return countStairs(n);
+}
+
+// console.log(countStairsMemo(40));
+
+
+
 module.exports = countStairs;
