@@ -50,8 +50,4 @@ const countStairsMemo = n => {
   return countStairs(n);
 }
 
-// console.log(countStairsMemo(40));
-
-
-
 module.exports = countStairs;
