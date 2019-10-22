@@ -43,7 +43,8 @@ function countTwos(num) {
         count += Math.pow(10, idx);
       } else if (digit === 2) {
         // for digits === 2, add the total of all previous digits to the count
-        count += Number(arr.slice(0, idx).join('')) + 1;
+        // CORRECTION: if this solution was emailed to you, it was missing `reverse()` on this line. It needs to be there!!!
+        count += Number(arr.slice(0, idx).reverse().join('')) + 1;
       }
     }
     // return updated count
@@ -52,41 +53,6 @@ function countTwos(num) {
   }, 0);
 }
 
-function checkDigits(num) {
-  var str = '0' + String(num);
-  var count = 0;
-
-  for (var i = str.length - 1; i > 0; i--) {
-    var slice = str.slice(0, i);
-    if (str[i] > 2) {
-      // add by one but leave it as the string with the leading 0
-      slice = addOne(slice);
-    }
-    // add trailing zeroes until length matches
-    slice = padNum(slice, str.length - 1);
-    count += parseInt(slice);
-  }
-
-  for (var i = 0; i < str.length; i++) {
-    if (str[i] === '2') {
-      count += parseInt(str.slice(i+1) || 0) + 1;
-    }
-  }
-
-  return count;
-}
-
-function addOne(str) {
-  return str.slice(0, -1) + (parseInt(str.slice(-1)) + 1);
-}
-
-function padNum(str, length) {
-  while (str.length < length) {
-    str += '0';
-  }
-  return str;
-}
-
 // console.log(bruteForce(30261312));
 console.log(countTwos( 30261312));
-console.log(checkDigits( 30261312));
+console.log(bruteForce( 30261312));
