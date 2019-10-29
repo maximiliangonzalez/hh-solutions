@@ -12,10 +12,12 @@
 
 const getAllProductsBruteForce = nums => {
   return nums.map((num, i) => {
-    return [...nums.slice(0, i), ...nums.slice(i + 1)].reduce((product, current) => product * current);
+    return [...nums.slice(0, i), ...nums.slice(i + 1)]
+      .reduce((product, current) => product * current);
   });
 };
 
+// NOT A REAL SOLUTION
 const getAllProductsWithoutZero = nums => {
   const product = nums.reduce((product, current) => product * current);
   return nums.map(num => product / num);
@@ -27,13 +29,14 @@ const getAllProducts = nums => {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === 0) {
       numberOfZeros++;
+      if (numberOfZeros > 1) {
+        return nums.map(num => 0);
+      }
       continue;
-    }
-    if (numberOfZeros > 1) {
-      return nums.map(num => 0);
     }
     product *= nums[i];
   }
+
   return nums.map(num => {
     if (num === 0) {
       return product;

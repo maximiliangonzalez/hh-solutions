@@ -17,11 +17,11 @@
  * 	 
  */
 
-function newIntersections(x, y){
+// function newIntersections(x, y){
 
-}
+// }
 
-/*
+
 // new type that takes an array of numbers and picks the least and greatest values.
 function Range(arr) {
   this.contents = [Math.min.apply(this, arr), Math.max.apply(this, arr)];
@@ -98,11 +98,11 @@ function count(arr) {
 
 // take the arrays of coordinates and turn them into ranges
 function rangify(lines) {
-    for (var coor in lines) {
-      var arr = lines[coor];
-      lines[coor] = new Range(arr);
-    }
+  for (var coor in lines) {
+    var arr = lines[coor];
+    lines[coor] = new Range(arr);
   }
-*/
+}
+
 
 module.exports = newIntersections;
