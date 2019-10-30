@@ -104,5 +104,6 @@ function rangify(lines) {
   }
 }
 
+console.log(newIntersections([-1, -1, 1, 1, 1, 2, 2, 3], [0, -2, 1, -1, -3, 0, -2, -1]));
 
 module.exports = newIntersections;
