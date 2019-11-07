@@ -53,6 +53,6 @@ const matchWord = str => {
     return stack.length === 0;
 }
 
-console.log(matchWord('%%$@$while  try ! yrt  for if_fi rof #*#  elihw'));
+console.log(matchWord1('%%$@$while  try ! yrt  for if_fi rof #*#  elihw'));
 
 module.exports = matchWord; 

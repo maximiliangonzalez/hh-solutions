@@ -34,43 +34,51 @@ Range.prototype.contains = function(num) {
 
 
 function newIntersections(x, y){
-  var yCounts, horizontals = {},
-      xCounts, verticals = {};
+  let yCounts = count(y);
+  let xCounts = count(x);
+  const horizontals = {};
+  const verticals = {};
 
-  xCounts = count(x);
-  yCounts = count(y);
+  // finding how many points are on any given x and y axis
+  console.log(xCounts);
+  console.log(yCounts);
 
   // find vertical lines and place into an object. The keys are the x-coordinates where the line is at and the values are arrays of y-coordinates along that line
-  for (var coor in xCounts) {
+  for (let coor in xCounts) {
     if (xCounts[coor] > 1) { // only check for a line if there are multiple points at this value
-      for (var i in x) {
+      for (let i in x) {
         if (x[i] == coor) {
           verticals[coor] = (verticals[coor] || []).concat(y[i]); // add it to list of coordinates
         }
       }
     }
   }
+  console.log(verticals);
 
   // find horizontal lines and place into an object. The keys are the y-coordinates where the line is at and the values are arrays of x-coordinates along that line
-  for (var coor in yCounts) {
+  for (let coor in yCounts) {
     if (yCounts[coor] > 1) {
-      for (var i in y) {
+      for (let i in y) {
         if (y[i] == coor) {
           horizontals[coor] = (horizontals[coor] || []).concat(x[i]);
         }
       }
     }
   }
+  console.log(horizontals);
 
   rangify(verticals);
   rangify(horizontals);
 
-  var newPoints = 0;
+  console.log(verticals);
+  console.log(horizontals);
 
-  for (var yCoor in horizontals) {
-    var xRange = horizontals[yCoor];
-    for (var xCoor in verticals) {
-      var yRange = verticals[xCoor];
+  let newPoints = 0;
+
+  for (let yCoor in horizontals) {
+    let xRange = horizontals[yCoor];
+    for (let xCoor in verticals) {
+      let yRange = verticals[xCoor];
       if (xRange.contains(xCoor) && yRange.contains(yCoor)) {
         newPoints++;
       }
@@ -98,8 +106,8 @@ function count(arr) {
 
 // take the arrays of coordinates and turn them into ranges
 function rangify(lines) {
-  for (var coor in lines) {
-    var arr = lines[coor];
+  for (let coor in lines) {
+    let arr = lines[coor];
     lines[coor] = new Range(arr);
   }
 }
